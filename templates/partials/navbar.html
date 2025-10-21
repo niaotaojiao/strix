@@ -1,0 +1,14 @@
+<div class="flex min-h-screen flex-col">
+  <div class="mb-8 flex justify-between px-6 py-4">
+    <div>
+      {% if config.navigation.show_logo %}
+      {% endif %}
+      <h1 class="">{% block title %}{{ config.title }}{% endblock %}</h1>
+    </div>
+    <nav class="flex gap-4">
+      {% for item in config.menu %}
+        <a href="{{ item.url | safe }}">{{ item.name }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+</div>

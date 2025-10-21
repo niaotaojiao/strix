@@ -1,6 +1,10 @@
 # The URL the site will be built for
 base_url = "https://example.com"
 
+# The site title and description; used in feeds by default.
+title = "Strix Demo"
+description = ""
+
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = false
 
@@ -14,3 +18,18 @@ highlight_code = true
 
 [extra]
 # Put all your custom variables here
+
+[navigation]
+show_logo = true
+
+[[menu]]
+name = 'Home'
+url = '/'
+
+[[menu]]
+name = 'Blog'
+url = '/blog'
+
+[[menu]]
+name = 'About'
+url = '/about'
