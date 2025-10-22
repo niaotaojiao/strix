@@ -1,2 +1,28 @@
 {% extends "base.html" %}
+{% import "macros.html" as macros %}
 
+{% block content %}
+  {% set sections = config.extra.homepage.sections | default(value=[]) %}
+
+  {% set hero = load_data(path="data/hero.toml") %}
+  {{ macros::hero(hero=hero) }}
+
+  {% for section_name in sections %}
+    {% if section_name == "recent_posts" %}
+      {{ macros::recent_posts(pages=section.pages) }}
+
+    {% elif section_name == "featured_projects" %}
+      {% set projects = load_data(path="data/projects.toml") %}
+      {{ macros::featured_projects(projects=projects.featured) }}
+
+    {% elif section_name == "tech_stack" %}
+      {% set tech = load_data(path="data/tech_stack.toml") %}
+      {{ macros::tech_stack(tech=tech) }}
+
+    {% elif section_name == "timeline" %}
+      {% set timeline = load_data(path="data/timeline.toml") %}
+      {{ macros::timeline(timeline_items=timeline.entries) }}
+    {% endif %}
+   {% endfor %}
+
+{% endblock content %}

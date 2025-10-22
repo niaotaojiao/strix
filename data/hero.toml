@@ -1,0 +1,11 @@
+
+
+title = "Welcome Strix 👋"
+subtitle = "Full-Stack Developer & Tech Blogger"
+description = "I build modern web applications and write about technology."
+
+cta_primary = { text = "View Projects", url = "/projects" }
+cta_secondary = { text = "Read Blog", url = "/blog" }
+
+image = "/images/hero-avatar.jpg"
+show_social_links = true

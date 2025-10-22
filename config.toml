@@ -17,19 +17,18 @@ build_search_index = true
 highlight_code = true
 
 [extra]
-# Put all your custom variables here
 
-[extra.navigation]
+# Navber
 show_logo = true
 
-[[extra.menu]]
-name = 'Home'
-url = '/'
+menu = [
+  { name = "Home", url = "/" },
+  { name = "Blog", url = "/Blog" },
+  { name = "About", url = "/about" },
+]
 
-[[extra.menu]]
-name = 'Blog'
-url = '/blog'
-
-[[extra.menu]]
-name = 'About'
-url = '/about'
+[extra.homepage]
+sections = [
+  "hero",
+  "recent_posts"
+]
