@@ -9,7 +9,10 @@
   <main>
     {% block content %} {% endblock %}
   </main>
-  
+
   {% include "partials/footer.html" %}
+
+  <!-- JavaScript -->
+   <script src="{{ get_url(path='js/main.js')}}" defer></script>
 </body>
 </html>

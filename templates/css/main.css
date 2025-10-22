@@ -3,9 +3,26 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
-  /* ... */
+  /* Light mode */
+  --color-background: #ffffff;
+  --color-text: #1a1a1a;
+  --color-border: #e5e5e5;
+  --color-card-bg: #f9fafb;
 }
 
-.dark {
-  /* ... */
+/* Dark mode CSS variables */
+[data-theme="dark"] {
+  --color-background: #0f172a;
+  --color-text: #f1f5f9;
+  --color-border: #334155;
+  --color-card-bg: #1e293b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-background: #0f172a;
+    --color-text: #f1f5f9;
+    --color-border: #334155;
+    --color-card-bg: #1e293b;
+  }
 }

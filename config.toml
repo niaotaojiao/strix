@@ -19,17 +19,17 @@ highlight_code = true
 [extra]
 # Put all your custom variables here
 
-[navigation]
+[extra.navigation]
 show_logo = true
 
-[[menu]]
+[[extra.menu]]
 name = 'Home'
 url = '/'
 
-[[menu]]
+[[extra.menu]]
 name = 'Blog'
 url = '/blog'
 
-[[menu]]
+[[extra.menu]]
 name = 'About'
 url = '/about'
