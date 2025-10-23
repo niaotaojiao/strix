@@ -19,6 +19,7 @@ highlight_code = true
 [extra]
 
 # Navber
+logo = ""
 show_logo = true
 
 menu = [

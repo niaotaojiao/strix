@@ -1,7 +1,7 @@
 
 
-title = "Welcome Strix 👋"
-subtitle = "Full-Stack Developer & Tech Blogger"
+title = "Hi, Welcome Strix 👋"
+subtitle = "A powerful, lightweight theme for Zola built with Tailwind CSS."
 description = "I build modern web applications and write about technology."
 
 cta_primary = { text = "View Projects", url = "/projects" }
