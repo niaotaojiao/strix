@@ -28,8 +28,13 @@ menu = [
   { name = "About", url = "/about" },
 ]
 
+socials = [
+  { name = "github", url = "https://github.com/your-username" },
+  { name = "email", url = "mailto:your-email@gmail.com" },
+]
+
 [extra.homepage]
 sections = [
-  "hero",
+  "profile",
   "recent_posts"
 ]

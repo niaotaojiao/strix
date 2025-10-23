@@ -1,0 +1,18 @@
+{% import "macros.html" as macros %}
+
+<div class="flex flex-col items-center px-1 py-1 bg-background text-text">
+  <img src="{{ profile.image }}" alt="Profile img" class="rounded-lg shadow-2xl mb-6">
+  <h1 class="text-5xl font-bold mb-4">{{ profile.title }}</h1>  
+  <p class="text-xl">{{ profile.subtitle }}</p>
+
+  {% if config.extra.socials %}
+    <div class="flex flex-row gap-x-6 mt-6">  
+      {% for social in config.extra.socials %}
+        {{ macros::icon_button(x=social) }}
+      {% endfor %} 
+    </div>
+  {% endif %}
+</div>
+
+
+      

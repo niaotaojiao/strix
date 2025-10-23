@@ -4,8 +4,8 @@
 {% block content %}
   {% set sections = config.extra.homepage.sections | default(value=[]) %}
 
-  {% set hero = load_data(path="data/hero.toml") %}
-  {{ macros::hero(hero=hero) }}
+  {% set profile = load_data(path="data/profile.toml") %}
+  {{ macros::profile(profile=profile) }}
 
   {% for section_name in sections %}
     {% if section_name == "recent_posts" %}
