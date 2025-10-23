@@ -1,14 +1,15 @@
 <div class="flex items-center justify-between px-6 py-4 bg-background text-text">
-  <div>
-    {% if config.navigation.extra.show_logo %}
+  <a href="{{ config.base_url }}" class="flex items-center space-x-3">
+    {% if config.extra.show_logo %}
+      <img src="{{ config.extra.logo }}" alt="logo" class="h-12 w-auto">
     {% endif %}
-    <h1 class="">{% block title %}{{ config.title }}{% endblock %}</h1>
-  </div>
+    <span class="text-xl font-semibold tracking-tight">{{ config.title }}</span>
+  </a>
 
   <div class="flex gap-4 items-center ">
     <nav class="flex gap-4">
       {% for item in config.extra.menu %}
-      <a href="{{ item.url | safe }}">{{ item.name }}</a>
+        <a href="{{ item.url | safe }}">{{ item.name }}</a>
       {% endfor %}
     </nav>
 

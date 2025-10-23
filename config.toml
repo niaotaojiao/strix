@@ -19,7 +19,7 @@ highlight_code = true
 [extra]
 
 # Navber
-logo = ""
+logo = "/image/strix_logo.png"
 show_logo = true
 
 menu = [
