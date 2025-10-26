@@ -1,75 +1,35 @@
 +++
-title = "Markdown syntax guide"
+title = "Welcome to Strix 🌱"
 date = 2025-10-26
+description = "An introduction to the theme, its purpose, and the kind of users it's designed for."
+draft = false
 +++
 
+## Introduction
 
-## Headers
+This theme was originally created for my personal job-hunting website.  
+While there are plenty of excellent templates available for **Hugo**, I never felt comfortable with the Go ecosystem (and, no offense, its mascot doesn’t really appeal to me).  
 
-# This is a Heading h1
-## This is a Heading h2
-###### This is a Heading h6
+On the other hand, **Zola** is a lightweight and elegant static site generator that I truly enjoy using — yet I found most existing Zola themes visually uninspiring.  
+So I decided to build one myself: something clean, modern, and flexible, reflecting both my design taste and the practical needs of a personal site.
 
-## Emphasis
+## Demo
 
-*This text will be italic*  
-_This will also be italic_
+🚧 A demo site is not available yet — it’s still under development.  
+Stay tuned! I’ll add the live preview link once the theme reaches its first stable release.
 
-**This text will be bold**  
-__This will also be bold__
+## Who It’s For
 
-_You **can** combine them_
+This theme is designed with simplicity and individuality in mind.  
+It’s perfect for:
 
-## Lists
+- 📝 **Bloggers** who prefer minimal aesthetics with readable typography  
+- 💼 **Portfolio creators** who want a professional yet personal presentation  
+- 👤 **Individuals** looking to build a personal landing page or profile  
 
-### Unordered
+---
 
-* Item 1
-* Item 2
-* Item 2a
-* Item 2b
-    * Item 3a
-    * Item 3b
-
-### Ordered
-
-1. Item 1
-2. Item 2
-3. Item 3
-    1. Item 3a
-    2. Item 3b
-
-## Images
-
-![This is an alt text.](/image/sample.webp "This is a sample image.")
-
-## Links
-
-You may be using [Markdown Live Preview](https://markdownlivepreview.com/).
-
-## Blockquotes
-
-> Markdown is a lightweight markup language with plain-text-formatting syntax, created in 2004 by John Gruber with Aaron Swartz.
->
->> Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.
-
-## Tables
-
-| Left columns  | Right columns |
-| ------------- |:-------------:|
-| left foo      | right foo     |
-| left bar      | right bar     |
-| left baz      | right baz     |
-
-## Blocks of code
-
-```js
-let message = 'Hello world';
-alert(message);
-```
-
-## Inline code
-
-This web site is using `markedjs/marked`.
+This post marks the beginning of a small documentation series where I’ll explain the theme’s structure, customization options, and development notes in detail.  
+If you’re curious about how it’s built, or plan to fork it for your own use — you’re in the right place.
 
 

@@ -1,31 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-<article class="max-w-3xl py-8 md:py-16">
+<div class="max-w-6xl mx-auto px-4 py-8 md:py-16 lg:flex lg:gap-x-12">
+  <article class="max-w-3xl py-8 md:py-16">
 
-  <header class="mb-8">
-    {% if page.taxonomies.tags %}
-    <div class="mb-4">
-      {% for tag in page.taxonomies.tags %}
-      <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}"
-        class="text-blue-500 hover:text-blue-600 text-sm font-medium uppercase">{{ tag }}</a>
-      {% if not loop.last %}, {% endif %}
-      {% endfor %}
-    </div>
-    {% endif %}
+    <header class="mb-8">
+      {% if page.taxonomies.tags %}
+      <div class="mb-4">
+        {% for tag in page.taxonomies.tags %}
+        <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}"
+          class="text-blue-500 hover:text-blue-600 text-sm font-medium uppercase">{{ tag }}</a>
+        {% if not loop.last %}, {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
 
-    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-gray-100">
-      {{ page.title }}
-    </h1>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-gray-100">
+        {{ page.title }}
+      </h1>
 
-    <div class="mt-4 text-gray-500 dark:text-gray-400">
-      <span>{{ page.date | date(format="%Y-%m-%d") }}</span>
-      <span class="mx-2">·</span>
-      <span>{{ page.reading_time }} 分鐘閱讀</span>
-    </div>
-  </header>
-  
-  <div class="
+      <div class="mt-4 text-gray-500 dark:text-gray-400">
+        <span>{{ page.date | date(format="%Y-%m-%d") }}</span>
+        <span class="mx-2">·</span>
+        <span>{{ page.reading_time }} mins</span>
+      </div>
+    </header>
+
+    <div class="
         prose prose-lg 
         dark:prose-invert 
         max-w-none 
@@ -33,44 +34,43 @@
         prose-a:text-blue-500 hover:prose-a:text-blue-600
         prose-code:before:content-none prose-code:after:content-none prose-code:font-mono
     ">
-    {#
-    `page.content` 包含了從 Markdown 轉換過來的 HTML。
-    `| safe` 過濾器是必須的，它告訴 Zola "這段 HTML 是安全的，請直接渲染它"。
-    #}
-    {{ page.content | safe }}
-  </div>
-
-  <footer class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
-    <div class="flex justify-between items-center">
-      <div>
-        {% if page.newer %}
-        <a href="{{ page.newer.permalink }}" class="flex items-center text-blue-500 hover:text-blue-600">
-          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-          </svg>
-          <div>
-            <span class="text-sm text-gray-500 dark:text-gray-400">上一篇</span>
-            <p class="font-semibold">{{ page.newer.title }}</p>
-          </div>
-        </a>
-        {% endif %}
-      </div>
-
-      <div>
-        {% if page.older %}
-        <a href="{{ page.older.permalink }}" class="flex items-center text-right text-blue-500 hover:text-blue-600">
-          <div>
-            <span class="text-sm text-gray-500 dark:text-gray-400">下一篇</span>
-            <p class="font-semibold">{{ page.older.title }}</p>
-          </div>
-          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </a>
-        {% endif %}
-      </div>
+      {{ page.content | safe }}
     </div>
-  </footer>
 
-</article>
+    <footer class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+      <div class="flex justify-between items-center">
+        <div>
+          {% if page.newer %}
+          <a href="{{ page.newer.permalink }}" class="flex items-center text-blue-500 hover:text-blue-600">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            <div>
+              <span class="text-sm text-gray-500 dark:text-gray-400">上一篇</span>
+              <p class="font-semibold">{{ page.newer.title }}</p>
+            </div>
+          </a>
+          {% endif %}
+        </div>
+
+        <div>
+          {% if page.older %}
+          <a href="{{ page.older.permalink }}" class="flex items-center text-right text-blue-500 hover:text-blue-600">
+            <div>
+              <span class="text-sm text-gray-500 dark:text-gray-400">下一篇</span>
+              <p class="font-semibold">{{ page.older.title }}</p>
+            </div>
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </footer>
+  </article>
+
+  {% include "partials/toc.html" %}
+</div>
+
 {% endblock content %}
