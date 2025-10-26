@@ -1,28 +1,11 @@
 {% extends "base.html" %}
-{% import "macros.html" as macros %}
+{% import "macros/block_loader.html" as block_loader %}
 
 {% block content %}
-  {% set sections = config.extra.homepage.sections | default(value=[]) %}
+  {% set blocks = config.extra.homepage | default(value=[]) %}
 
-  {% set profile = load_data(path="data/profile.toml") %}
-  {{ macros::profile(profile=profile) }}
-
-  {% for section_name in sections %}
-    {% if section_name == "recent_posts" %}
-      {{ macros::recent_posts(pages=section.pages) }}
-
-    {% elif section_name == "featured_projects" %}
-      {% set projects = load_data(path="data/projects.toml") %}
-      {{ macros::featured_projects(projects=projects.featured) }}
-
-    {% elif section_name == "tech_stack" %}
-      {% set tech = load_data(path="data/tech_stack.toml") %}
-      {{ macros::tech_stack(tech=tech) }}
-
-    {% elif section_name == "timeline" %}
-      {% set timeline = load_data(path="data/timeline.toml") %}
-      {{ macros::timeline(timeline_items=timeline.entries) }}
-    {% endif %}
-   {% endfor %}
+  {% for i in blocks %}
+    {{ block_loader::render_block(block = i) }}
+  {% endfor %}
 
 {% endblock content %}

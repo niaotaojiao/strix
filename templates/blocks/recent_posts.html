@@ -1,0 +1,58 @@
+{% set section = get_section(path="./posts/_index.md") %} 
+
+<div class="mt-8 mb-12">
+  <h2 class="text-2xl font-bold">Recent Posts</h2>
+  <p class="text-lg text-gray-600 dark:text-gray-400 mt-2">一些關於技術與生活的想法。</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {% for page in section.pages | slice(end=12) %}
+  <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+    {% if page.extra.image %}
+    <img src="{{ page.extra.image }}" alt="{{ page.title }}" class="w-full h-48 object-cover">
+    {% endif %}
+    
+    <div class="p-6">
+      <a href="{{ page.permalink }}" class="hover:text-blue-500 transition-colors">
+        <h3 class="text-xl font-bold mb-2">
+            {{ page.title }}
+        </h3>
+      
+        <div class="flex items-center text-sm text-gray-600 dark:text-gray-400 mb-3">
+          <time datetime="{{ page.date }}">{{ page.date | date(format="%Y-%m-%d") }}</time>
+          {% if page.reading_time %}
+          <span class="mx-2">•</span>
+          <span>{{ page.reading_time }} min read</span>
+          {% endif %}
+        </div>
+        
+        {% if page.description %}
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          {{ page.description }}
+        </p>
+        {% elif page.summary %}
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          {{ page.summary }}
+        </p>
+        {% endif %}
+        
+        {% if page.taxonomies.tags %}
+        <div class="flex flex-wrap gap-2">
+          {% for tag in page.taxonomies.tags | slice(end=3) %}
+          <span class="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">
+            {{ tag }}
+          </span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </a>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+
+<div class="text-center mt-12">
+  <a href="" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300">
+    Show More →
+  </a>
+</div>

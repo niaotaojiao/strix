@@ -1,0 +1,8 @@
+{% macro icon_button(x) %}
+  {% set icons = load_data(path="data/icons.json") %}
+    <a href="{{ x.url }}" 
+        class="text-text/70 hover:text-text transition-colors duration-300"
+    >
+        {{ icons[x.name] | safe }}
+    </a>
+{% endmacro %}

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 py-8 md:py-16">
+
+  <header class="text-center mb-12">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-gray-100">
+      {{ section.title }}
+    </h1>
+    {% if section.description %}
+    <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+      {{ section.description }}
+    </p>
+    {% endif %}
+  </header>
+
+  <div class="grid grid-cols-1 gap-12">
+
+    {# Zola 會自動傳入一個 `paginator` 物件來處理分頁 #}
+    {% for post in paginator.pages %}
+    {# 第一篇文章使用特別的 "精選" 樣式 #}
+    {% if loop.first %}
+    <a href="{{ post.permalink }}"
+      class="block group md:grid md:grid-cols-2 md:gap-8 items-center p-6 bg-white dark:bg-gray-800/50 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300">
+      <div>
+        <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+          <span>{{ post.date | date(format="%Y-%m-%d") }}</span>
+          <span class="mx-2">·</span>
+          <span>{{ post.reading_time }} 分鐘閱讀</span>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4 group-hover:text-blue-500">
+          {{ post.title }}
+        </h2>
+        <p class="text-gray-700 dark:text-gray-300 text-lg">
+          {{ post.description | default(value="點擊以閱讀更多...") }}
+        </p>
+      </div>
+    </a>
+    {% else %}
+    {# 其他文章使用與 recent_posts 類似的卡片樣式 #}
+    <a href="{{ post.permalink }}"
+      class="block p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+      <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+        <span>{{ post.date | date(format="%Y-%m-%d") }}</span>
+        {% if post.taxonomies.tags %}
+        <span class="mx-2">·</span>
+        <span
+          class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">{{
+          post.taxonomies.tags | first }}</span>
+        {% endif %}
+      </div>
+      <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+        {{ post.title }}
+      </h3>
+      <p class="text-gray-700 dark:text-gray-300">
+        {{ post.description | default(value="點擊以閱讀更多...") }}
+      </p>
+    </a>
+    {% endif %}
+    {% endfor %}
+  </div>
+
+  <nav class="flex justify-between items-center mt-16">
+    <div>
+      {% if paginator.previous %}
+      <a href="{{ paginator.previous }}"
+        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+        ← 較新文章
+      </a>
+      {% endif %}
+    </div>
+    <div class="text-sm text-gray-500 dark:text-gray-400">
+      Page {{ paginator.current_index }} / {{ paginator.total_pages }}
+    </div>
+    <div>
+      {% if paginator.next %}
+      <a href="{{ paginator.next }}"
+        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+        較舊文章 →
+      </a>
+      {% endif %}
+    </div>
+  </nav>
+</div>
+{% endblock content %}

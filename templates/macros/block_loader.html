@@ -1,0 +1,9 @@
+{% import "macros/components.html" as comp %}
+
+{% macro render_block(block) %}
+  {% if block == "profile" %}
+    {% include "blocks/profile.html" %}
+  {% elif block == "recent_posts" %}
+    {% include "blocks/recent_posts.html" %}
+  {% endif %}
+{% endmacro %}
