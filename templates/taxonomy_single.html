@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto max-w-6xl px-4 py-12">
+  <!-- 麵包屑 -->
+  <header class="mb-12">
+    <nav class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      <a href="{{ get_url(path='') }}" class="hover:text-blue-500">首頁</a>
+      <span class="mx-2">/</span>
+      <a href="{{ get_url(path=taxonomy.name) }}" class="hover:text-blue-500">
+        {% if taxonomy.name == "tags" %}標籤{% elif taxonomy.name == "categories" %}分類{% else %}{{ taxonomy.name }}{% endif %}
+      </a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-900 dark:text-gray-100">{{ term.name }}</span>
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <h1 class="text-4xl font-bold">
+        {% if taxonomy.name == "tags" %}<span class="text-blue-500">#</span>{% endif %}{{ term.name }}
+      </h1>
+      <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">
+        {{ term.pages | length }} 篇文章
+      </span>
+    </div>
+  </header>
+
+  <!-- 文章列表 -->
+  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    {% for page in term.pages | sort(attribute="date") | reverse %}
+    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-shadow overflow-hidden group">
+      {% if page.extra.image %}
+      <a href="{{ page.permalink }}">
+        <img src="{{ page.extra.image }}" 
+             alt="{{ page.title }}" 
+             class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+      </a>
+      {% endif %}
+      
+      <div class="p-6">
+        <h2 class="text-xl font-bold mb-2">
+          <a href="{{ page.permalink }}" 
+             class="hover:text-blue-500 transition-colors">
+            {{ page.title }}
+          </a>
+        </h2>
+        
+        <div class="flex items-center text-sm text-gray-600 dark:text-gray-400 mb-3">
+          <time datetime="{{ page.date }}">
+            {{ page.date | date(format="%Y-%m-%d") }}
+          </time>
+          {% if page.reading_time %}
+          <span class="mx-2">•</span>
+          <span>{{ page.reading_time }} min</span>
+          {% endif %}
+        </div>
+        
+        {% if page.description %}
+        <p class="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
+          {{ page.description }}
+        </p>
+        {% endif %}
+        
+        <!-- 標籤 -->
+        {% if page.taxonomies.tags and taxonomy.name == "tags" %}
+        <div class="flex flex-wrap gap-2">
+          {% for tag in page.taxonomies.tags | slice(end=3) %}
+          <span class="text-xs px-2 py-1 rounded
+                    {% if tag == term.name %}
+                      bg-blue-500 text-white
+                    {% else %}
+                      bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300
+                    {% endif %}">
+            {{ tag }}
+          </span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+
+  <!-- 分頁 -->
+  {% if paginator %}
+  <nav class="mt-12 flex justify-center gap-2">
+    {% if paginator.previous %}
+    <a href="{{ paginator.previous }}" 
+       class="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+      ← 上一頁
+    </a>
+    {% endif %}
+    
+    <span class="px-4 py-2 bg-blue-500 text-white rounded font-medium">
+      第 {{ paginator.current_index }} 頁
+    </span>
+    
+    {% if paginator.next %}
+    <a href="{{ paginator.next }}" 
+       class="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+      下一頁 →
+    </a>
+    {% endif %}
+  </nav>
+  {% endif %}
+</div>
+{% endblock content %}

@@ -3,6 +3,10 @@ title = "Welcome to Strix 🌱"
 date = 2025-10-26
 description = "An introduction to the theme, its purpose, and the kind of users it's designed for."
 draft = false
+
+[taxonomies]
+tags = ["rust", "web-development", "tutorial"]
+categories = ["programming"]
 +++
 
 ## Introduction
