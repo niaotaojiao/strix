@@ -1,0 +1,44 @@
+[[events]]
+title = "Software Engineer"
+organization = "Strix Inc."
+start_date = "2026-01"
+end_date = "Present"
+type = "experience"
+description = """
+- 使用 **Rust** 與 **Zola** 開發並開源了 Strix 主題。
+- 透過 **Tailwind CSS** 實現了響應式與高度客製化的 UI/UX 設計。
+- 負責專案的架構設計、功能實現與文件撰寫。
+"""
+
+[[events]]
+title = "GenAI Lab"
+organization = "Awesome Tech"
+start_date = "2025-12"
+end_date = "2023-09"
+type = "experience"
+description = """
+- 協助開發內部使用的儀表板應用。
+- 學習並應用了 React 和 TypeScript 進行前端開發。
+- 參與團隊的 Agile 開發流程，包括每日站會和 Sprint 回顧。
+"""
+
+[[events]]
+title = "CSIE Master"
+organization = "STUST"
+start_date = "2025-12"
+end_date = "2024-09"
+type = "education"
+description = """
+- 主修領域為機器學習與分散式系統。
+- 畢業論文題目為：「基於 Mamba 架構的時間序列預測模型研究」。
+"""
+
+[[events]]
+title = "CSIE"
+organization = "STUST"
+start_date = "2024-06"
+end_date = "2020-09"
+type = "education"
+description = """
+- 主修領域為機器學習與分散式系統。
+"""
