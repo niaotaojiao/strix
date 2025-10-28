@@ -44,5 +44,6 @@ homepage = [
   "profile",
   "recent_posts",
   "experience",
-  "education"
+  "education",
+  "featured_projects"
 ]

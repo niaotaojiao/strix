@@ -1,0 +1,70 @@
+[[projects]]
+title = "Strix - A Zola Theme"
+
+image = ""
+
+description = "A powerful, lightweight theme for Zola built with Tailwind CSS."
+
+technologies = ["Zola", "Rust", "Tailwind CSS", "Tera"]
+
+[[projects.links]]
+    name = "GitHub"
+    url = "https://github.com/niaotaojiao/strix"
+
+[[projects.links]]
+    name = "Live Demo"
+    url = "https://your-strix-demo.netlify.app/"
+
+
+[[projects]]
+title = "Teat Projects Block-1"
+
+image = "/images/owl_01.png"
+
+description = "A powerful, lightweight theme for Zola built with Tailwind CSS."
+
+technologies = ["Zola", "Rust", "Tailwind CSS", "Tera"]
+
+[[projects.links]]
+    name = "GitHub"
+    url = "https://github.com/niaotaojiao/strix"
+
+[[projects.links]]
+    name = "Live Demo"
+    url = "https://your-strix-demo.netlify.app/"
+
+
+[[projects]]
+title = "Teat Projects Block-2"
+
+image = ""
+
+description = "A powerful, lightweight theme for Zola built with Tailwind CSS."
+
+technologies = ["Zola", "Rust", "Tailwind CSS", "Tera"]
+
+[[projects.links]]
+    name = "GitHub"
+    url = "https://github.com/niaotaojiao/strix"
+
+[[projects.links]]
+    name = "Live Demo"
+    url = "https://your-strix-demo.netlify.app/"
+
+
+[[projects]]
+title = "Teat Projects Block-3"
+
+image = ""
+
+description = "A powerful, lightweight theme for Zola built with Tailwind CSS."
+
+technologies = ["Zola", "Rust", "Tailwind CSS", "Tera"]
+
+[[projects.links]]
+    name = "GitHub"
+    url = "https://github.com/niaotaojiao/strix"
+
+[[projects.links]]
+    name = "Live Demo"
+    url = "https://your-strix-demo.netlify.app/"

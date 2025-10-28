@@ -4,6 +4,9 @@ date = 2025-10-26
 description = "An introduction to the theme, its purpose, and the kind of users it's designed for."
 draft = false
 
+[extra]
+image = "/posts/welcome/owl_02.png"
+
 [taxonomies]
 tags = ["rust", "web-development", "tutorial"]
 categories = ["programming"]
