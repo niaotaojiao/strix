@@ -1,6 +1,6 @@
 {% set profile = load_data(path="data/profile.toml") %}
 
-<div class="flex flex-col items-center px-1 py-1 bg-background text-text">
+<div class="flex flex-col items-center px-1 py-1 bg-background text-primary">
   <img class="mb-6 h-36 w-36 rounded-full" src="{{ profile.image }}" alt="Profile img" >
   <h1 class="text-5xl font-bold mb-4">{{ profile.title }}</h1>  
   <p class="text-xl">{{ profile.subtitle }}</p>
