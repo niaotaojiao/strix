@@ -8,10 +8,13 @@
 
   {% block content %} {% endblock %}
 
+  {% include "partials/backtotop.html" %}
+
   {% include "partials/footer.html" %}
 
   <!-- JavaScript -->
    <script src="{{ get_url(path='js/main.js')}}" defer></script>
    <script src="{{ get_url(path='js/navbar.js')}}" defer></script>
+   <script src="{{ get_url(path='js/backtotop.js')}}"></script>
 </body>
 </html>
