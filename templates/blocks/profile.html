@@ -1,12 +1,12 @@
 {% set profile = load_data(path="data/profile.toml") %}
 
-<div class="flex flex-col items-center px-1 py-1 bg-background text-primary">
-  <img class="mb-6 h-36 w-36 rounded-full" src="{{ profile.image }}" alt="Profile img" >
-  <h1 class="text-5xl font-bold mb-4">{{ profile.title }}</h1>  
+<div class="relative flex flex-col items-center justify-center px-1 py-1 bg-background text-primary">
+  <img class="mb-6 h-36 w-36 rounded-full medium-zoom-img" src="{{ profile.image }}" alt="Profile img" >
+  <h1 class="text-4xl font-bold mb-4">{{ profile.title }}</h1>  
   <p class="text-xl">{{ profile.subtitle }}</p>
   
   {% if config.extra.socials %}
-    <div class="flex flex-row gap-x-6 mt-6">  
+    <div class="flex flex-row gap-x-6 mt-6 mb-10">  
       {% for social in config.extra.socials %}
         {{ comp::icon_button(x=social) }}
       {% endfor %} 
