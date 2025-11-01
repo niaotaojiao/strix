@@ -25,6 +25,11 @@ highlight_theme = "OneHalfDark"
 
 [extra]
 
+author = "Great Grey Owl"
+author_img = "/images/strix_logo.png"
+subtitle = "Wait, listen, and watch for prey, then swoop down"
+bio = "Strix Nebulosa @ Dense Coniferous"
+
 # Navber
 logo = "/images/strix_logo.png"
 show_logo = true
