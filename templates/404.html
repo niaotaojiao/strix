@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+{#
+我們使用 flex 佈局讓所有內容垂直和水平居中。
+min-h-[70vh] 確保內容區塊能大致填滿頁面
+(假設 header 和 footer 佔了 30vh)。
+#}
+<div class="flex flex-col items-center justify-center min-h-[70vh] text-center px-6">
+
+  <div class="text-8xl mb-4 text-gray-400 dark:text-gray-600" aria-hidden="true">
+    (・▴・)
+  </div>
+
+  <h1 class="text-7xl font-black text-primary">404</h1>
+
+  <h2 class="text-3xl font-semibold text-secondary mt-4">
+    HOOOOPS! PAGE NOT FOUND
+  </h2>
+
+  <p class="text-lg text-gray-500 dark:text-gray-400 mt-2 max-w-md">
+    Even our smartest owl couldn't find this page — it might've flown away.
+    <a href="{{ get_url(path='/') }}"
+      class="text-blue-500 font-semibold hover:underline hover:text-blue-600 transition-colors duration-300">Return to
+      the forest</a>.
+  </p>
+
+</div>
+{% endblock content %}
