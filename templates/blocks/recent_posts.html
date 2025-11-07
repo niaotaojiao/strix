@@ -8,7 +8,7 @@
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     {% for page in section.pages | slice(end=12) %}
     <article class="block group bg-elevated rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-      <a href="{{ page.permalink }}" class="rounded-lg hover:text-blue-500 transition-all duration-300">
+      <a href="{{ page.permalink }}" class="rounded-lg transition-all duration-300">
         {% if page.extra.image %}
         <div class="overflow-hidden rounded-t-lg">
           <img src="{{ page.extra.image }}" alt="{{ page.title }}" 
@@ -38,7 +38,7 @@
           {% if page.taxonomies.tags %}
           <div class="flex flex-wrap gap-2">
             {% for tag in page.taxonomies.tags | slice(end=3) %}
-            <span class="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">
+            <span class="text-xs border border-accent text-accent px-2 py-1 rounded">
               {{ tag }}
             </span>
             {% endfor %}
@@ -51,9 +51,13 @@
   </div>
 
   <div class="text-center mt-12">
-    <a href=""
-      class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300">
-      Show More →
-    </a>
+    <div class="text-center mt-12">
+      <a href="/posts"
+        class="inline-block border border-accent text-primary font-bold py-3 px-6 rounded-lg 
+               transition-all duration-300 group hover:border-transparent hover:text-accent">
+        Show More 
+        <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+      </a>
+    </div>    
   </div>
 </div>

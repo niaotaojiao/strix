@@ -21,16 +21,16 @@ sort(attribute="start_date") | reverse %}
       </div>
 
       <div>
-        <div class="flex justify-between">
-          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">{{ event.title }}</h3>
-          <p class="text-sm font-medium text-blue-500 dark:text-blue-400 mb-1">
+        <div class="flex justify-between text-primary">
+          <h3 class="text-xl font-bold ">{{ event.title }}</h3>
+          <p class="text-sm font-medium mb-1">
             {{ event.start_date }} ~ {{ event.end_date }}
           </p>
         </div>
 
-        <p class="text-md text-gray-600 dark:text-gray-300 mb-3">{{ event.organization }}</p>
+        <p class="text-md mb-3 text-secondary">{{ event.organization }}</p>
 
-        <div class="prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-200">
+        <div class="prose prose-sm dark:prose-invert max-w-none ">
           {{ event.description | markdown | safe }}
         </div>
       </div>
