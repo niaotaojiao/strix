@@ -5,5 +5,5 @@ description = "I build modern web applications and write about technology."
 cta_primary = { text = "View Projects", url = "/projects" }
 cta_secondary = { text = "Read Blog", url = "/blog" }
 
-image = "/images/strix_logo.png"
+image = "/images/owl_profile.png"
 show_social_links = true
