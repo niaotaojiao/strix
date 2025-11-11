@@ -24,27 +24,43 @@ highlight_code = true
 highlight_theme = "OneHalfDark"
 
 [extra]
-
+# ============================================
+# Basic Information
+# ============================================
 author = "Great Grey Owl"
-author_img = "/images/strix_logo.png"
-subtitle = "Wait, listen, and watch for prey, then swoop down"
+author_img = "/images/owl_profile.png"
+subtitle = "A powerful, lightweight theme for Zola built with Tailwind CSS."
 bio = "Strix Nebulosa @ Dense Coniferous"
+# "Wait, listen, and watch for prey, then swoop down"
 
-# Navber
+# ============================================
+# Navigation Bar
+# ============================================
 logo = "/images/strix_logo2.png"
 show_logo = true
 
+# Menu
+# Format: [{ name = "Display Name", url = "Link Path" }]
 menu = [
   { name = "Home", url = "/" },
   { name = "Posts", url = "/posts" },
   { name = "About", url = "/about" },
 ]
 
+# ============================================
+# Social Links 
+# ============================================
+# name: github, email
 socials = [
   { name = "github", url = "https://github.com/your-username" },
   { name = "email", url = "mailto:your-email@gmail.com" },
 ]
 
+# ============================================
+# Homepage Sections
+# ============================================
+# Available modules: profile, recent_posts, experience, education, featured_projects
+# The order determines the display sequence. You can rearrange or remove modules as needed.
 homepage = [
   "profile",
   "recent_posts",
