@@ -1,6 +1,6 @@
 +++
 title = "Welcome to Strix 🌱"
-date = 2025-11-07
+date = 2025-11-11
 description = "An introduction to the theme, its purpose, and the kind of users it's designed for."
 draft = false
 
