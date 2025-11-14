@@ -56,7 +56,6 @@ theme = "strix"
 [extra]
 show_logo = true
 logo = "static/logo.svg"
-show_dark_mode = true
 ```
 
 Run your site locally:
@@ -81,7 +80,7 @@ When installed, your project might look like this:
 
 You can override any template by copying it from `themes/strix/templates/` into your own `templates/` folder.
 
-> 💡 Tip: If you’re new to Zola, check out the official Zola documentation
+> 💡 Tip: If you’re new to Zola, check out the official [Zola documentation](https://www.getzola.org/documentation/getting-started/overview/)
 
 **Now you’re ready!**
 Your Strix-powered site should be live locally — start customizing and make it yours ✨
