@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="max-w-6xl mx-auto px-4 py-8 md:py-16">
+<div class="max-w-6xl mx-auto px-4">
 
   <header class="text-center mb-12">
     <h1 class="text-4xl md:text-5xl font-extrabold text-primary">
@@ -27,7 +27,7 @@
       {% endif %}
 
       <div class="flex flex-col justify-center md:w-2/3">
-        <h2 class="text-2xl font-semibold text-primary mb-3 group-hover:text-accent">
+        <h2 class="mb-3 text-2xl font-semibold text-primary  group-hover:text-accent">
           {{ post.title }}
         </h2>
         <p class="mb-3 text-secondary">
@@ -41,7 +41,6 @@
           {% endif %}
         </div>
       </div>
-
     </a>
     {% endfor %}
   </div>
@@ -50,20 +49,30 @@
     <div>
       {% if paginator.previous %}
       <a href="{{ paginator.previous }}"
-        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
-        « Previous
+        class="group flex items-center text-secondary hover:text-accent transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+          class="size-6 group-hover:-translate-x-1 transition-transform">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+        </svg>
+        <p class="font-semibold">Previous</p>
       </a>
       {% endif %}
     </div>
-    <div class="text-sm text-gray-500 dark:text-gray-400">
-      Page {{ paginator.current_index }} / {{ paginator.total_pages }}
+    <div class="font-semibold text-secondary">
+      Page {{ paginator.current_index }} / {{ paginator.number_pagers }}
     </div>
     <div>
       {% if paginator.next %}
-      <a href="{{ paginator.next }}"
-        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
-        Next »
-      </a>
+      <div class="flex-1 flex justify-end">
+        <a href="{{ paginator.next }}"
+          class="group flex items-center text-secondary hover:text-accent transition-colors">
+          <p class="font-semibold">Next</p>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="size-6 group-hover:translate-x-1 transition-transform">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        </a>
+      </div>
       {% endif %}
     </div>
   </nav>
