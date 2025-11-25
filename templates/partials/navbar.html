@@ -1,6 +1,6 @@
 <div class="min-h-[148px]"></div>
 
-<header id="navbar" class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-background/70 transition-all duration-300">
+<header id="navbar" class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-background/70">
   <div class="max-w-7xl mx-auto flex items-center justify-between px-6 sm:px-10">
     <!-- Logo -->
     <a href="{{ config.base_url }}" class="flex items-center space-x-3">
@@ -13,7 +13,34 @@
     <!-- Desktop menu -->
     <nav class="hidden md:flex ml-auto gap-6 items-center px-6 text-base font-medium">
       {% for item in config.extra.menu %}
-        <a href="{{ item.url | safe }}" class="hover:text-accent transition-colors">{{ item.name }}</a>
+        {% if item.submenu %}
+        <div class="relative group">
+          <a href="{{ item.url | safe }}" 
+             class="flex items-center gap-1 hover:text-accent transition-colors">
+            {{ item.name }}
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-4 group-hover:rotate-180 transition-transform">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+          </a>
+          
+          <!-- Drop-down menu -->
+          <div class="absolute left-0 mt-2 w-48 bg-elevated rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div class="py-2">
+              {% for subitem in item.submenu %}
+              <a href="{{ subitem.url | safe }}" 
+                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-accent transition-colors">
+                {{ subitem.name }}
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {% else %}
+        <a href="{{ item.url | safe }}" class="hover:text-accent transition-colors">
+          {{ item.name }}
+        </a>
+        {% endif %}
       {% endfor %}
     </nav>
 
@@ -58,9 +85,19 @@
   <div id="mobile-menu" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
     <div class="flex flex-col gap-1 bg-background/95 backdrop-blur-xl border-t border-gray-200 dark:border-gray-800 px-6 py-3">
       {% for item in config.extra.menu %}
-        <a href="{{ item.url | safe }}" class="mobile-menu-item block py-2 px-3 rounded-lg hover:bg-gray-500/10 hover:text-accent transition-colors">
+        <a href="{{ item.url | safe }}" class="mobile-menu-item block py-2 px-3 rounded-lg hover:bg-gray-500/10 hover:text-accent transition-colors font-medium">
           {{ item.name }}
         </a>
+        
+        {% if item.submenu %}
+          <div class="ml-4 flex flex-col gap-1">
+            {% for subitem in item.submenu %}
+            <a href="{{ subitem.url | safe }}" class="mobile-menu-item block py-1.5 px-3 rounded-lg hover:bg-gray-500/10 hover:text-accent transition-colors text-sm text-secondary">
+              {{ subitem.name }}
+            </a>
+            {% endfor %}
+          </div>
+        {% endif %}
       {% endfor %}
     </div>
   </div>

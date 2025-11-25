@@ -41,9 +41,14 @@ show_logo = true
 
 # Menu
 # Format: [{ name = "Display Name", url = "Link Path" }]
+# Menu with optional submenu
 menu = [
   { name = "Home", url = "/" },
-  { name = "Posts", url = "/posts" },
+  {name = "Posts", url = "/posts", submenu = [
+      { name = "All Posts", url = "/posts" },
+      { name = "Tech", url = "/posts/tech" },
+      { name = "Tutorial", url = "/posts/tutorial" }
+    ]},
   { name = "About", url = "/about" },
 ]
 
