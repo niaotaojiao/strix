@@ -1,42 +1,96 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mx-auto max-w-6xl px-4 py-12">
-  <header class="mb-12">
-    <h1 class="text-4xl font-bold mb-4">
-      {% if taxonomy.name == "tags" %}
-        所有標籤
-      {% elif taxonomy.name == "categories" %}
-        所有分類
-      {% else %}
+<div class="container mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+
+  <header class="mb-16 text-center sm:text-left">
+    <nav class="text-xs font-medium tracking-wide text-secondary uppercase mb-4">
+      <a href="{{ get_url(path='') }}" class="hover:text-primary transition-colors">Home</a>
+      <span class="mx-2 opacity-50">/</span>
+      <span class="text-primary">{{ taxonomy.name }}</span>
+    </nav>
+
+    <div class="flex flex-col sm:flex-row items-center sm:items-baseline gap-4 border-b border-secondary/30 pb-8">
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-primary capitalize">
         {{ taxonomy.name }}
-      {% endif %}
-    </h1>
-    <p class="text-xl text-gray-600 dark:text-gray-400">
-      共 {{ terms | length }} 個{{ taxonomy.name }}
-    </p>
+      </h1>
+      <span class="text-lg text-secondary font-normal">
+        Index of {{ terms | length }} topics
+      </span>
+    </div>
   </header>
 
-  <!-- 標籤/分類雲 -->
-  <div class="flex flex-wrap gap-3">
+  {% if taxonomy.name == "categories" %}
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {% for term in terms | sort(attribute="pages") | reverse %}
-    <a href="{{ term.permalink }}" 
-       class="group relative inline-flex items-center gap-2 px-4 py-2 
-              bg-white dark:bg-gray-800 
-              border border-gray-200 dark:border-gray-700 
-              rounded-lg shadow-sm
-              hover:shadow-md hover:border-blue-500 dark:hover:border-blue-400
-              transition-all duration-200">
-      <span class="text-lg font-medium text-gray-800 dark:text-gray-200 
-                   group-hover:text-blue-500 dark:group-hover:text-blue-400">
-        {% if taxonomy.name == "tags" %}#{% endif %}{{ term.name }}
+    <a href="{{ term.permalink }}" class="group relative flex flex-col items-center justify-center h-52 p-6 
+              bg-elevated
+              rounded-2xl overflow-hidden
+              border border-transparent hover:border-border
+              shadow-sm hover:shadow-xl 
+              transition-all duration-300">
+
+      <span
+        class="absolute inset-0 flex items-center justify-center 
+                   text-[10rem] font-black font-mono leading-none
+                   text-gray-200/40 dark:text-gray-700/20 
+                   transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 ease-out select-none pointer-events-none">
+        {{ term.name | truncate(length=1, end="") | upper }}
       </span>
-      <span class="text-sm text-gray-500 dark:text-gray-400 
-                   px-2 py-0.5 bg-gray-100 dark:bg-gray-700 rounded-full">
-        {{ term.pages | length }}
-      </span>
+
+      <div class="relative z-10 text-center space-y-2">
+
+        <h2 class="text-3xl font-extrabold text-primary group-hover:text-primary transition-colors">
+          {{ term.name }}
+        </h2>
+
+        <div class="inline-flex items-center gap-2 text-sm font-medium text-secondary uppercase tracking-widest">
+          <span class="w-8 h-px bg-primary/50 group-hover:w-12 transition-all duration-300"></span>
+          {{ term.pages | length }} Posts
+          <span class="w-8 h-px bg-primary/50 group-hover:w-12 transition-all duration-300"></span>
+        </div>
+
+      </div>
+
+      <div
+        class="absolute bottom-6 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+        <span class="text-primary text-sm font-bold">Read Topics &rarr;</span>
+      </div>
+
     </a>
     {% endfor %}
   </div>
+
+  {% else %}
+  <div class="flex flex-wrap gap-x-3 gap-y-4 items-baseline leading-loose">
+    {% for term in terms | sort(attribute="pages") | reverse %}
+
+    {% set count = term.pages | length %}
+    {% if count > 10 %}
+    {% set size_class = "text-2xl font-bold" %}
+    {% elif count > 5 %}
+    {% set size_class = "text-xl font-semibold" %}
+    {% else %}
+    {% set size_class = "text-base font-normal opacity-80" %}
+    {% endif %}
+
+    <a href="{{ term.permalink }}" class="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md
+                hover:bg-primary hover:text-white dark:hover:bg-primary
+                text-gray-700 dark:text-gray-300
+                transition-all duration-200 {{ size_class }}">
+
+      <span
+        class="border-b border-gray-300 dark:border-gray-700 group-hover:border-transparent pb-0.5 transition-colors">
+        <i class="pr-1 text-primary/60 group-hover:text-white/60 mr-0.5">#</i>{{ term.name }}
+      </span>
+
+      <sup class="text-[0.6em] font-mono text-gray-400 group-hover:text-white/80">
+        {{ count }}
+      </sup>
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %}
+
 </div>
 {% endblock content %}

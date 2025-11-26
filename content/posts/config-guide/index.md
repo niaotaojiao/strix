@@ -1,6 +1,6 @@
 +++
 title = "Configuration"
-date = 2025-11-06
+date = 2024-11-06
 description = "Learn how to configure the Strix theme — customize your name, navigation, social links, and homepage sections."
 draft = false
 

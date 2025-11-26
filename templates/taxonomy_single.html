@@ -2,105 +2,110 @@
 
 {% block content %}
 <div class="container mx-auto max-w-6xl px-4 py-12">
-  <!-- 麵包屑 -->
   <header class="mb-12">
-    <nav class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-      <a href="{{ get_url(path='') }}" class="hover:text-blue-500">首頁</a>
-      <span class="mx-2">/</span>
-      <a href="{{ get_url(path=taxonomy.name) }}" class="hover:text-blue-500">
-        {% if taxonomy.name == "tags" %}標籤{% elif taxonomy.name == "categories" %}分類{% else %}{{ taxonomy.name }}{% endif %}
+    <nav class="text-sm mb-4 text-secondary">
+      <a href="{{ get_url(path='') }}" class="hover:text-accent transition-colors">Home</a>
+      <span class="mx-2 opacity-50">/</span>
+      <a href="{{ get_url(path=taxonomy.name) }}" class="hover:text-accent transition-colors capitalize">
+        {{ taxonomy.name }}
       </a>
-      <span class="mx-2">/</span>
-      <span class="text-gray-900 dark:text-gray-100">{{ term.name }}</span>
+      <span class="mx-2 opacity-50">/</span>
+      <span class="text-primary font-medium">{{ term.name }}</span>
     </nav>
 
-    <div class="flex items-center gap-4">
-      <h1 class="text-4xl font-bold">
-        {% if taxonomy.name == "tags" %}<span class="text-blue-500">#</span>{% endif %}{{ term.name }}
+    <div class="flex items-baseline gap-3">
+      <h1 class="text-4xl font-bold text-primary">
+        {% if taxonomy.name == "tags" %}
+        <i class="mr-1 ">#</i>{{ term.name }}
+        {% else %}
+        {{ term.name }}
+        {% endif %}
       </h1>
-      <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">
-        {{ term.pages | length }} 篇文章
+
+      <span class="text-xl text-secondary font-normal">
+        • {{ term.pages | length }}
       </span>
     </div>
   </header>
 
-  <!-- 文章列表 -->
-  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-    {% for page in term.pages | sort(attribute="date") | reverse %}
-    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-shadow overflow-hidden group">
-      {% if page.extra.image %}
-      <a href="{{ page.permalink }}">
-        <img src="{{ page.extra.image }}" 
-             alt="{{ page.title }}" 
-             class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-      </a>
+  <section class="mt-12">
+    <div class="relative ml-3 border-l border-gray-200 dark:border-gray-800">
+
+      {% for page in term.pages %}
+      {# --- 邏輯判斷開始 --- #}
+      {% set current_year = page.date | date(format="%Y") %}
+
+      {# 判斷是否需要顯示年份：如果是第一篇，或者當前年份不等於上一篇的年份 #}
+      {% if loop.first %}
+      {% set show_year = true %}
+      {% else %}
+      {% set prev_index = loop.index0 - 1 %}
+      {% set prev_page = term.pages[prev_index] %}
+      {% set prev_year = prev_page.date | date(format="%Y") %}
+      {% if current_year != prev_year %}
+      {% set show_year = true %}
+      {% else %}
+      {% set show_year = false %}
       {% endif %}
-      
-      <div class="p-6">
-        <h2 class="text-xl font-bold mb-2">
-          <a href="{{ page.permalink }}" 
-             class="hover:text-blue-500 transition-colors">
-            {{ page.title }}
-          </a>
+      {% endif %}
+      {# --- 邏輯判斷結束 --- #}
+
+      {# --- 年份標題區塊 --- #}
+      {% if show_year %}
+      <div class="relative pt-8 pb-4">
+        <div
+          class="absolute -left-[9px] top-11 h-4 w-4 rounded-full border-4 border-white dark:border-gray-900 bg-secondary">
+        </div>
+
+        <h2 class="pl-8 text-3xl font-bold font-mono select-none text-secondary">
+          {{ current_year }}
         </h2>
-        
-        <div class="flex items-center text-sm text-gray-600 dark:text-gray-400 mb-3">
-          <time datetime="{{ page.date }}">
-            {{ page.date | date(format="%Y-%m-%d") }}
-          </time>
-          {% if page.reading_time %}
-          <span class="mx-2">•</span>
-          <span>{{ page.reading_time }} min</span>
-          {% endif %}
-        </div>
-        
-        {% if page.description %}
-        <p class="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
-          {{ page.description }}
-        </p>
-        {% endif %}
-        
-        <!-- 標籤 -->
-        {% if page.taxonomies.tags and taxonomy.name == "tags" %}
-        <div class="flex flex-wrap gap-2">
-          {% for tag in page.taxonomies.tags | slice(end=3) %}
-          <span class="text-xs px-2 py-1 rounded
-                    {% if tag == term.name %}
-                      bg-blue-500 text-white
-                    {% else %}
-                      bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300
-                    {% endif %}">
-            {{ tag }}
-          </span>
-          {% endfor %}
-        </div>
-        {% endif %}
       </div>
-    </article>
-    {% endfor %}
-  </div>
+      {% endif %}
+
+      {# --- 文章本體 --- #}
+      <article class="relative pl-8 py-6 group border-b border-gray-100 dark:border-gray-800 last:border-0">
+
+        <div
+          class="absolute -left-[5px] top-8 h-2.5 w-2.5 rounded-full border-2 border-white dark:border-gray-900 bg-gray-300 dark:bg-gray-600 group-hover:bg-primary transition-colors duration-300">
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-6 justify-between items-start">
+
+          <div class="flex-1 min-w-0">
+            <time class="mb-2 block text-sm font-mono text-primary font-bold tracking-wider">
+              {{ page.date | date(format="%m.%d") }}
+            </time>
+
+            <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2 leading-tight">
+              <a href="{{ page.permalink }}" class="hover:text-primary transition-colors">
+                {{ page.title }}
+              </a>
+            </h3>
+
+            {% if page.description %}
+            <p class="text-base text-gray-500 dark:text-gray-400 line-clamp-2 pr-4">
+              {{ page.description }}
+            </p>
+            {% endif %}
+          </div>
+
+          {% if page.extra.image %}
+          <a href="{{ page.permalink }}"
+            class="shrink-0 w-full sm:w-48 aspect-video rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+            <img src="{{ get_url(path=page.extra.image) }}" alt="{{ page.title }}"
+              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
+          </a>
+          {% endif %}
+
+        </div>
+      </article>
+      {% endfor %}
+
+    </div>
+  </section>
 
   <!-- 分頁 -->
-  {% if paginator %}
-  <nav class="mt-12 flex justify-center gap-2">
-    {% if paginator.previous %}
-    <a href="{{ paginator.previous }}" 
-       class="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-      ← 上一頁
-    </a>
-    {% endif %}
-    
-    <span class="px-4 py-2 bg-blue-500 text-white rounded font-medium">
-      第 {{ paginator.current_index }} 頁
-    </span>
-    
-    {% if paginator.next %}
-    <a href="{{ paginator.next }}" 
-       class="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-      下一頁 →
-    </a>
-    {% endif %}
-  </nav>
-  {% endif %}
+  
 </div>
 {% endblock content %}
