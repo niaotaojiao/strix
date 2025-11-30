@@ -67,6 +67,11 @@ show_tags = true
 socials = [
   { name = "github", url = "https://github.com/your-username" },
   { name = "email", url = "mailto:your-email@gmail.com" },
+  { name = "x", url = "mailto:your-email@gmail.com" },
+  { name = "linkedin", url = "mailto:your-email@gmail.com" },
+  { name = "instagram", url = "mailto:your-email@gmail.com" },
+  { name = "youtube", url = "mailto:your-email@gmail.com" },
+  { name = "yoube", url = "mailto:your-email@gmail.com" },
 ]
 
 # ============================================
