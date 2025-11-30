@@ -52,6 +52,10 @@ menu = [
   { name = "About", url = "/about" },
 ]
 
+footer_nav = [
+  { name = "About", url = "about"}
+]
+
 # Toggle switch: Whether to display Tags and Categories links in the footer
 show_categories = true
 show_tags = true
