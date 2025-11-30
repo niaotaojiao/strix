@@ -14,9 +14,14 @@
 
   {% include "partials/footer.html" %}
 
+  {% include "partials/search_modal.html" %}
+
   <!-- JavaScript -->
    <script src="{{ get_url(path='js/main.js')}}" defer></script>
    <script src="{{ get_url(path='js/navbar.js')}}" defer></script>
    <script src="{{ get_url(path='js/backtotop.js')}}"></script>
+   <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <script src="{{ get_url(path='js/search.js')}}" defer></script>
 </body>
 </html>
