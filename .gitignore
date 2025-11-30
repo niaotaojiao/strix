@@ -3,6 +3,7 @@ node_modules/
 dist/
 build/
 public/
+static/css/
 
 npm-debug.log*
 yarn-debug.log*

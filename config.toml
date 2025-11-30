@@ -44,13 +44,17 @@ show_logo = true
 # Menu with optional submenu
 menu = [
   { name = "Home", url = "/" },
-  {name = "Posts", url = "/posts", submenu = [
+  { name = "Posts", url = "/posts", submenu = [
       { name = "All Posts", url = "/posts" },
       { name = "Tech", url = "/posts/tech" },
       { name = "Tutorial", url = "/posts/tutorial" }
     ]},
   { name = "About", url = "/about" },
 ]
+
+# Toggle switch: Whether to display Tags and Categories links in the footer
+show_categories = true
+show_tags = true
 
 # ============================================
 # Social Links 

@@ -18,15 +18,19 @@
     <nav class="flex items-center gap-8">
       {% set link_class = "text-sm font-bold uppercase tracking-wider text-primary hover:text-primary transition-colors relative group" %}
       
+      {% if config.extra.show_categories %}
       <a href="{{ get_url(path='categories') }}" class="{{ link_class }}">
         Categories
         <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
       </a>
+      {% endif %}
 
+      {% if config.extra.show_tags %}
       <a href="{{ get_url(path='tags') }}" class="{{ link_class }}">
         Tags
         <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
       </a>
+      {% endif %}
     </nav>
 
   </div>
