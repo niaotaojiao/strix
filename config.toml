@@ -5,6 +5,8 @@ base_url = "https://example.com"
 title = "Strix"
 description = ""
 
+default_language = "en"
+
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = false
 
@@ -22,6 +24,9 @@ taxonomies = [
 highlight_code = true
 
 highlight_theme = "OneHalfDark"
+
+# [languages.zh]
+# title = "林鴞"
 
 [extra]
 # ============================================
