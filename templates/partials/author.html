@@ -1,15 +1,14 @@
 {% if config.extra.author %}
-<div class="flex items-center gap-x-4 mb-8">
+<div class="flex">
 
   {% if config.extra.author_img %}
-  <img class="w-24 h-24 rounded-full object-cover" 
+  <img class="w-24 h-24 rounded-full object-cover mr-4" 
     src="{{ get_url(path=config.extra.author_img) }}"
     alt="{{ config.extra.author }}">
   {% endif %}
 
   <div class="flex-1">
-    <p class="text-[0.6rem]">AUTHOR</p>
-    <h4 class="text-lg font-bold text-primary">{{ config.extra.author }}</h4>
+    <h4 class="mt-2 text-lg font-bold text-primary ">{{ config.extra.author }}</h4>
 
     {% if config.extra.bio %}
     <p class="text-sm text-secondary">{{config.extra.bio }}</p>

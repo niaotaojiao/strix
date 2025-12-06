@@ -2,94 +2,94 @@
 {% import "macros/components.html" as comp %}
 
 {% block content %}
-<div class="max-w-6xl py-8 md:py-16 lg:flex lg:gap-x-12">
-  <article class="max-w-7xl py-8 md:py-16">
+<article class="py-8 md:py-16">
+  <header class="mb-4">
+    {% if page.taxonomies.tags %}
+    <div class="mb-6">
+      {% for tag in page.taxonomies.tags %}
+      <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}" class="px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full 
+                  bg-elevated text-secondary 
+                  hover:bg-primary transition-all duration-300">
+        #{{ tag }}
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
 
-    <header class="mb-4">
-      {% if page.taxonomies.tags %}
-      <div class="mb-4">
-        {% for tag in page.taxonomies.tags %}
-        <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}"
-          class="text-blue-500 hover:text-blue-600 text-sm font-medium uppercase">{{ tag }}</a>
-        {% if not loop.last %}, {% endif %}
-        {% endfor %}
+    <h1 class="text-4xl md:text-5xl font-extrabold text-primary">
+      {{ page.title }}
+    </h1>
+
+    <div class="mt-4 text-secondary">
+      <span>{{ page.date | date(format="%Y.%m.%d") }}</span>
+      <span class="mx-2">·</span>
+      <span>{{ page.reading_time }} mins</span>
+    </div>
+  </header>
+
+  {% include "partials/author.html" %}
+
+  <section class="flex flex-col max-w-full mt-16 lg:flex-row">
+      <div class="order-first lg:ml-auto lg:order-last lg:ps-8 lg:max-w-xs">
+        {% include "partials/toc.html" %}
       </div>
-      {% endif %}
 
-      <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-gray-100">
-        {{ page.title }}
-      </h1>
-
-      <div class="mt-4 text-gray-500 dark:text-gray-400">
-        <span>{{ page.date | date(format="%Y-%m-%d") }}</span>
-        <span class="mx-2">·</span>
-        <span>{{ page.reading_time }} mins</span>
-      </div>
-    </header>
-
-    {% include "partials/author.html" %}
-
-    <div class="lg:flex lg:gap-x-12">
-      <div class="max-w-3xl mx-auto lg:mx-0 flex-1">
+      <div class="min-w-0 min-h-0 max-w-fit">
         <div class="
           prose prose-lg 
           dark:prose-invert 
-          max-w-none 
+          max-w-prose
           prose-img:rounded-lg prose-img:shadow-md
           prose-code:before:content-none prose-code:after:content-none prose-code:font-mono
           prose-headings:scroll-mt-24">
           {{ page.content | safe }}
         </div>
+      </div>
+    </section>
 
-        <footer class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
-          {% set section = get_section(path=page.ancestors | last) %}
-          {% set pages = section.pages %}
+  <footer class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+    {% set section = get_section(path=page.ancestors | last) %}
+    {% set pages = section.pages %}
 
-          {% set current_index = 0 %}
-          {% for p in pages %}
-          {% if p.permalink == page.permalink %}
-          {% set_global current_index = loop.index0 %}
-          {% endif %}
-          {% endfor %}
+    {% set current_index = 0 %}
+    {% for p in pages %}
+    {% if p.permalink == page.permalink %}
+    {% set_global current_index = loop.index0 %}
+    {% endif %}
+    {% endfor %}
 
-          {% set prev_index = current_index + 1 %}
-          {% set next_index = current_index - 1 %}
+    {% set prev_index = current_index + 1 %}
+    {% set next_index = current_index - 1 %}
 
-          <div class="flex justify-between items-center">
-            <!-- Previous (較新的文章) -->
-            <div class="flex-1">
-              {% if next_index >= 0 %}
-              {% set next_page = pages[next_index] %}
-              <a href="{{ next_page.permalink }}"
-                class="group flex items-center text-right text-primary hover:text-accent transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="size-6 group-hover:-translate-x-1 transition-transform">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                </svg>
-                <p class="font-semibold truncate">{{ next_page.title }}</p>
-              </a>
-              {% endif %}
-            </div>
-
-            <!-- Next (較舊的文章) -->
-            <div class="flex-1 flex justify-end">
-              {% if prev_index < pages | length %} {% set prev_page=pages[prev_index] %} <a
-                href="{{ prev_page.permalink }}"
-                class="group flex items-center text-primary hover:text-accent transition-colors">
-                <p class="font-semibold truncate">{{ prev_page.title }}</p>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="size-6 group-hover:translate-x-1 transition-transform">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                </svg>
-                </a>
-                {% endif %}
-            </div>
-          </div>
-        </footer>
+    <div class="flex justify-between items-center">
+      <!-- Previous (較新的文章) -->
+      <div class="flex-1">
+        {% if next_index >= 0 %}
+        {% set next_page = pages[next_index] %}
+        <a href="{{ next_page.permalink }}"
+          class="group flex items-center text-right text-primary hover:text-accent transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="size-6 group-hover:-translate-x-1 transition-transform">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          </svg>
+          <p class="font-semibold truncate">{{ next_page.title }}</p>
+        </a>
+        {% endif %}
       </div>
 
-      {% include "partials/toc.html" %}
+      <!-- Next (較舊的文章) -->
+      <div class="flex-1 flex justify-end">
+        {% if prev_index < pages | length %} {% set prev_page=pages[prev_index] %} <a href="{{ prev_page.permalink }}"
+          class="group flex items-center text-primary hover:text-accent transition-colors">
+          <p class="font-semibold truncate">{{ prev_page.title }}</p>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="size-6 group-hover:translate-x-1 transition-transform">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+          </a>
+          {% endif %}
+      </div>
     </div>
-</div>
-
+  </footer>
+</article>
 {% endblock content %}
