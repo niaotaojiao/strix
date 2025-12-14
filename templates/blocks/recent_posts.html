@@ -11,7 +11,7 @@
       <a href="{{ page.permalink }}" class="flex flex-col h-full rounded-lg transition-all duration-300">
         {% if page.extra.image %}
         <div class="overflow-hidden rounded-t-lg">
-          <img src="{{ page.extra.image }}" alt="{{ page.title }}" 
+          <img src="{{ page.path | safe }}{{ page.extra.image }}" alt="{{ page.title }}" 
           class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
         </div>
         {% endif %}
